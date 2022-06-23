@@ -2,7 +2,7 @@ import numpy as np
 import tensorflow as tf
 import matplotlib as plt
 import os
-
+import pandas as pd
  
 from PIL import Image
 
@@ -93,15 +93,15 @@ model.summary()
 
 
 with tf.device('/GPU:0'):
-    epochs = 15
+    epochs = 10
     history1 = model.fit(X_train, y_train, batch_size=32, epochs=epochs, validation_data=(X_test, y_test))
 
-'''
+
 # testing accuracy on test dataset
 from sklearn.metrics import accuracy_score
 
 # Importing the test dataset
-y_test = pd.read_csv('../input/gtsrb-german-traffic-sign/Test.csv')
+y_test = pd.read_csv('D:\Python\Internship\Data\Test.csv')
 
 labels = y_test["ClassId"].values
 imgs = y_test["Path"].values
@@ -111,7 +111,7 @@ data=[]
 # Retreiving the images
 with tf.device('/GPU:0'):
     for img in imgs:
-        image = Image.open('../input/gtsrb-german-traffic-sign/'+img)
+        image = Image.open('D:\Python\Internship\Data'+img)
         image = image.resize([30, 30])
         data.append(np.array(image))
 
@@ -123,4 +123,3 @@ with tf.device('/GPU:0'):
 #Accuracy with the test data
 from sklearn.metrics import accuracy_score
 print(accuracy_score(labels, pred))
-'''
