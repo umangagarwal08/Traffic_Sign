@@ -111,7 +111,7 @@ data=[]
 # Retreiving the images
 with tf.device('/GPU:0'):
     for img in imgs:
-        image = Image.open('D:\Python\Internship\Data'+img)
+        image = Image.open('D:\Python\Internship\Data/'+img)
         image = image.resize([30, 30])
         data.append(np.array(image))
 
